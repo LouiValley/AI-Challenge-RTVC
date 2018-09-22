@@ -177,3 +177,5 @@ https://github.com/harvitronix/five-video-classification-methods
 ## References
 
 https://blog.coast.ai/five-video-classification-methods-implemented-in-keras-and-tensorflow-99cad29cc0b5
+
+https://www.analyticsvidhya.com/blog/2017/08/introduction-to-multi-label-classification/

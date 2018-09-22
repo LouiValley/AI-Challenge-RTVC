@@ -11,3 +11,5 @@ https://blog.coast.ai/five-video-classification-methods-implemented-in-keras-and
 https://www.analyticsvidhya.com/blog/2017/08/introduction-to-multi-label-classification/
 
 https://medium.com/coinmonks/multi-label-classification-blog-tags-prediction-using-nlp-b0b5ee6686fc
+
+https://www.depends-on-the-definition.com/guide-to-multi-label-classification-with-neural-networks/

@@ -221,6 +221,7 @@ class DataSet():
         if data_type == "images":
             # Get and resample frames.
             frames = self.get_frames_for_sample(sample)
+            print("frames: %s,seq_length: %s" % (frames,self.seq_length))
             frames = self.rescale_list(frames, self.seq_length)
             # Build the image sequence
             sequence = self.build_image_sequence(frames)
@@ -252,6 +253,7 @@ class DataSet():
         """Given a list and a size, return a rescaled/samples list. For example,
         if we want a list of size 5 and we have a list of size 25, return a new
         list of size five which is every 5th element of the origina list."""
+        print("input_list: %s,size: %s" % (input_list, size))
         assert len(input_list) >= size
 
         # Get the number to skip between iterations.

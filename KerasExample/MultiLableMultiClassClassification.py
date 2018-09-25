@@ -2,7 +2,7 @@
 import scipy
 from scipy.io import arff
 import pandas as pd
-data, meta = scipy.io.arff.loadarff('/Users/yangboz/PycharmProjects/KerasExample/yeast/yeast-train.arff')
+data, meta = scipy.io.arff.loadarff('/Users/yangboz/git/AI-Challenge-RTVC/KerasExample/yeast/yeast-train.arff')
 df = pd.DataFrame(data)
 print(df.head())
 # generate dataset
@@ -55,6 +55,17 @@ classifier.fit(X_train, y_train)
 predictions = classifier.predict(X_test)
 # calculate accuracy
 print(accuracy_score(y_test,predictions))
+# https://medium.com/coinmonks/multi-label-classification-blog-tags-prediction-using-nlp-b0b5ee6686fc
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.multiclass import OneVsRestClassifier
+from sklearn.metrics import accuracy_score
+classifier = OneVsRestClassifier(MultinomialNB())
+# train
+classifier.fit(X_train, y_train)
+# predict
+predictions = classifier.predict(X_test)
+# calculate accuracy
+print(accuracy_score(y_test, predictions))
 
 
 

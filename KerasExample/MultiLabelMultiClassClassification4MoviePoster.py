@@ -77,4 +77,51 @@ def prepare_data(data, img_dict, size=(150, 101)):
 SIZE = (150, 101)
 dataset, y, label_dict, ids = prepare_data(data, img_dict, size=SIZE)
 
-# build the model.
+# build the model.VGG-liked
+import keras
+from keras.models import Sequential
+from keras.layers import Dense, Dropout, Flatten
+from keras.layers import Conv2D, MaxPooling2D, BatchNormalization
+
+model = Sequential()
+model.add(Conv2D(32, kernel_size=(3, 3), activation='relu',
+                 input_shape=(SIZE[0], SIZE[1], 3)))
+model.add(Conv2D(32, (3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+
+model.add(Conv2D(64, kernel_size=(3, 3), activation='relu'))
+model.add(Conv2D(64, (3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+
+model.add(Flatten())
+model.add(Dense(128, activation='relu'))
+model.add(Dropout(0.5))
+# The sigmoid gives us independent propabilities for each class. So DON’T use softmax here!
+model.add(Dense(29, activation='sigmoid'))
+
+# compile model
+model.compile(loss='binary_crossentropy', optimizer=keras.optimizers.Adam(),
+              metrics=['accuracy'])
+# train model
+n = 10000
+model.fit(np.array(dataset[:n]), np.array(y[n:]), batch_size=16, epochs=5, verbose=1, validation_split=0.1)
+
+# predict
+n_test = 100
+X_test = dataset[n:n + n_test]
+y_test = y[n:n + n_test]
+pred = model.predict(np.array(X_test))
+
+# calculate the accuracy
+
+# a few examples
+def show_example(idx):
+    N_true = int(np.sum(y_test[idx]))
+    show_img(ids[n+ idx])
+    print("Prediction: {}".format("|".join(["{} ({:.3})".format(label_dict["idx2word"][s],
+                                                                pred[idx][s])
+                                            for s in pred[idx].argsort()[-N_true:][::-1]])))
+
+show_example(3)

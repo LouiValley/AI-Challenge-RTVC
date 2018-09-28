@@ -38,15 +38,14 @@ def preprocess(img, size=(150, 101)):
     img = img.astype(np.float32)
     img = (img / 127.5) - 1.
     return img
-# generate dataset
 def prepare_data(data, img_dict, size=(150, 101)):
     print("Generation dataset...")
     dataset = []
     y = []
     ids = []
-    label_dict = {"word2idx":{},"idx2word":[]}
+    label_dict = {"word2idx": {}, "idx2word": []}
     idx = 0
-    genre_per_movie = data["Genre"].apply(lambda x:str(x).split("|"))
+    genre_per_movie = data["Genre"].apply(lambda x: str(x).split("|"))
     for l in [g for d in genre_per_movie for g in d]:
         if l in label_dict["idx2word"]:
             pass
@@ -60,22 +59,22 @@ def prepare_data(data, img_dict, size=(150, 101)):
     print("got {} samples".format(n_samples))
     for k in img_dict:
         try:
-            g = data[data["imdbId"]==int(k)]["Genre"].values[0].split("|")
+            g = data[data["imdbId"] == int(k)]["Genre"].values[0].split("|")
             img = preprocess(img_dict[k], size)
             if img.shape != (150, 101, 3):
                 continue
             l = np.sum([np.eye(n_classes, dtype="uint8")[label_dict["word2idx"][s]]
-                        for s in g], axis = 0)
+                        for s in g], axis=0)
             y.append(l)
             dataset.append(img)
             ids.append(k)
         except:
             pass
-        print("DONE")
+    print("DONE")
     return dataset, y, label_dict, ids
 # scale movie poster to 96X96
 SIZE = (150, 101)
-dataset, y, label_dict, ids = prepare_data(data, img_dict, size=SIZE)
+dataset, y, label_dict, ids =  prepare_data(data, img_dict, size=SIZE)
 
 # build the model.VGG-liked
 import keras
@@ -98,20 +97,26 @@ model.add(Dropout(0.25))
 model.add(Flatten())
 model.add(Dense(128, activation='relu'))
 model.add(Dropout(0.5))
-# The sigmoid gives us independent propabilities for each class. So DON’T use softmax here!
 model.add(Dense(29, activation='sigmoid'))
 
-# compile model
-model.compile(loss='binary_crossentropy', optimizer=keras.optimizers.Adam(),
+model.compile(loss='binary_crossentropy',
+              optimizer=keras.optimizers.Adam(),
               metrics=['accuracy'])
+
+print(model.summary())
+
 # train model
-n = 10000
-model.fit(np.array(dataset[:n]), np.array(y[n:]), batch_size=16, epochs=5, verbose=1, validation_split=0.1)
+
+n = 800
+model.fit(np.array(dataset[: n]), np.array(y[: n]), batch_size=16, epochs=5,
+          verbose=1, validation_split=0.1)
 
 # predict
+
 n_test = 100
 X_test = dataset[n:n + n_test]
 y_test = y[n:n + n_test]
+print(X_test)
 pred = model.predict(np.array(X_test))
 
 # calculate the accuracy
@@ -119,9 +124,13 @@ pred = model.predict(np.array(X_test))
 # a few examples
 def show_example(idx):
     N_true = int(np.sum(y_test[idx]))
-    show_img(ids[n+ idx])
+    show_img(ids[n + idx])
     print("Prediction: {}".format("|".join(["{} ({:.3})".format(label_dict["idx2word"][s],
                                                                 pred[idx][s])
                                             for s in pred[idx].argsort()[-N_true:][::-1]])))
 
+#
 show_example(3)
+show_example(97)
+show_example(48)
+show_example(68)

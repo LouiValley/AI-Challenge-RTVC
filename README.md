@@ -27,4 +27,6 @@ https://medium.com/coinmonks/multi-label-classification-blog-tags-prediction-usi
 
 https://www.depends-on-the-definition.com/guide-to-multi-label-classification-with-neural-networks/
 
+https://www.kdnuggets.com/2018/09/object-detection-image-classification-yolo.html
+
 https://medium.com/@RiterApp/capsule-networks-as-a-new-approach-to-image-recognition-345d4db0831

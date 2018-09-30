@@ -26,3 +26,5 @@ https://www.analyticsvidhya.com/blog/2017/08/introduction-to-multi-label-classif
 https://medium.com/coinmonks/multi-label-classification-blog-tags-prediction-using-nlp-b0b5ee6686fc
 
 https://www.depends-on-the-definition.com/guide-to-multi-label-classification-with-neural-networks/
+
+https://medium.com/@RiterApp/capsule-networks-as-a-new-approach-to-image-recognition-345d4db0831

@@ -8,6 +8,13 @@
 
 1.Split all the videos into train/test folders
 
+compare to UCF-101 video files summary:
+
+| Datasets      | Size                         | FPS   | Length | Images |
+| ------------- |:----------------------------:| -----:|-------:|-------:|
+| UCF-101       | 320X240                      | 25    | 4~10s  | 44     | 
+| RTVC2018      | 540X960,480X684,1280X720...  | 30    | 10s    | 50     |
+
 2.Extract jpegs of each frame for each video
 
 3.Summarize the videos, their class, train/test status and frame count in a CSV we’ll reference throughout our training.

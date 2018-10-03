@@ -23,6 +23,42 @@ compare to UCF-101 video files summary:
 
 5.
 
+### Troubleshoots
+
+1.GPU CUDA_ERROE_OUT_OF_MEMORY
+
+```
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+sess = tf.Session(config=config)
+```
+
+2.Load our data from file. But with blank value
+
+```
+with open(os.path.join('data', 'data_file.csv'), 'r') as fin:
+  reader = csv.reader(fin)
+  data = list(reader)
+print(data)  
+ ```
+ 
+ to 
+ 
+ ```
+ with open(os.path.join('data', 'data_file.csv'), 'r') as fin:
+   data = pandas.read_csv(fin, header=None)
+ print(data.values.tolist())  
+ ```
+ 
+ 3.Get the parts in Windows10
+
+```
+parts = video.split(os.path.sep)
+```
+to
+```
+parts = video.split("/")
+```
 
 ## References
 

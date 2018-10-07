@@ -61,7 +61,8 @@ parts = video.split("/")
 ```
 
 4.MemoryError
-···
+
+```
 Epoch 1/1000
   6/100 [>.............................] - ETA: 2:08 - loss: 1.4358 - acc: 0.6094 - top_k_categorical_accuracy: 0.8542Traceback (most recent call last):
   File "train_cnn.py", line 142, in <module>
@@ -93,7 +94,7 @@ Epoch 1/1000
   File "C:\Users\Administrator\AppData\Local\conda\conda\envs\tensorflow_gpu\lib\site-packages\keras_preprocessing\image.py", line 1916, in _get_batches_of_transformed_samples
     dtype=self.dtype)
 MemoryError
-···
+```
 
 ## References
 

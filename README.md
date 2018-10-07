@@ -50,7 +50,7 @@ print(data)
  print(data.values.tolist())  
  ```
  
- 3.Get the parts in Windows10
+3.Get the parts in Windows10
 
 ```
 parts = video.split(os.path.sep)
@@ -59,6 +59,41 @@ to
 ```
 parts = video.split("/")
 ```
+
+4.MemoryError
+···
+Epoch 1/1000
+  6/100 [>.............................] - ETA: 2:08 - loss: 1.4358 - acc: 0.6094 - top_k_categorical_accuracy: 0.8542Traceback (most recent call last):
+  File "train_cnn.py", line 142, in <module>
+    main(weights_file)
+  File "train_cnn.py", line 138, in main
+    [checkpointer, early_stopper, tensorboard])
+  File "train_cnn.py", line 119, in train_model
+    callbacks=callbacks)
+  File "C:\Users\Administrator\AppData\Local\conda\conda\envs\tensorflow_gpu\lib\site-packages\keras\legacy\interfaces.py", line 91, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\Administrator\AppData\Local\conda\conda\envs\tensorflow_gpu\lib\site-packages\keras\engine\training.py", line 1418, in fit_generator
+    initial_epoch=initial_epoch)
+  File "C:\Users\Administrator\AppData\Local\conda\conda\envs\tensorflow_gpu\lib\site-packages\keras\engine\training_generator.py", line 180, in fit_generator
+    generator_output = next(output_generator)
+  File "C:\Users\Administrator\AppData\Local\conda\conda\envs\tensorflow_gpu\lib\site-packages\keras\utils\data_utils.py", line 601, in get
+    six.reraise(*sys.exc_info())
+  File "C:\Users\Administrator\AppData\Local\conda\conda\envs\tensorflow_gpu\lib\site-packages\six.py", line 693, in reraise
+    raise value
+  File "C:\Users\Administrator\AppData\Local\conda\conda\envs\tensorflow_gpu\lib\site-packages\keras\utils\data_utils.py", line 595, in get
+    inputs = self.queue.get(block=True).get()
+  File "C:\Users\Administrator\AppData\Local\conda\conda\envs\tensorflow_gpu\lib\multiprocessing\pool.py", line 644, in get
+    raise self._value
+  File "C:\Users\Administrator\AppData\Local\conda\conda\envs\tensorflow_gpu\lib\multiprocessing\pool.py", line 119, in worker
+    result = (True, func(*args, **kwds))
+  File "C:\Users\Administrator\AppData\Local\conda\conda\envs\tensorflow_gpu\lib\site-packages\keras\utils\data_utils.py", line 401, in get_index
+    return _SHARED_SEQUENCES[uid][i]
+  File "C:\Users\Administrator\AppData\Local\conda\conda\envs\tensorflow_gpu\lib\site-packages\keras_preprocessing\image.py", line 1441, in __getitem__
+    return self._get_batches_of_transformed_samples(index_array)
+  File "C:\Users\Administrator\AppData\Local\conda\conda\envs\tensorflow_gpu\lib\site-packages\keras_preprocessing\image.py", line 1916, in _get_batches_of_transformed_samples
+    dtype=self.dtype)
+MemoryError
+···
 
 ## References
 

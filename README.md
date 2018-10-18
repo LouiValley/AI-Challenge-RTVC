@@ -60,6 +60,33 @@ to
 parts = video.split("/")
 ```
 
+1_move_files.py in Windows10
+
+```
+            if not os.path.exists(filename):
+                print("Can't find %s to move. Skipping." % (filename))
+                continue
+
+            # Move it.
+            dest = os.path.join(group, classname, filename)
+            print("Moving %s to %s" % (filename, dest))
+            os.rename(filename, dest)
+```
+to
+
+```
+            fullfilename = "UCF-101/" + classname + "/"+ filename
+            print(fullfilename)
+            if not os.path.exists(fullfilename):
+                print("Can't find %s to move. Skipping." % (fullfilename))
+                continue
+
+            # Move it.
+            dest = os.path.join(group, classname, filename)
+            print("Moving %s to %s" % (fullfilename, dest))
+            os.rename(fullfilename, dest)
+```
+
 4.MemoryError
 
 ```

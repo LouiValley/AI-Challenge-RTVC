@@ -6,6 +6,10 @@
 
 ### TODO List
 
+0.Windows 10 Envoriment prepare: 
+
+Annaconda Python 3.6.6 + Tensorflow-gpu 1.11 + CUDA 9 + Cudnn 9.0
+
 1.Split all the videos into train/test folders
 
 compare to UCF-101 video files summary:

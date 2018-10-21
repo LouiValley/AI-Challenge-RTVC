@@ -161,6 +161,16 @@ Epoch 26/1000
 Epoch 00026: val_loss did not improve from 1.46369
 ```
 
+train.py
+
+```
+Epoch 00021: val_loss did not improve from 1.15622
+Epoch 22/1000
+262/262 [==============================] - 117s 447ms/step - loss: 1.0282 - acc: 0.7091 - top_k_categorical_accuracy: 0.9294 - val_loss: 1.1878 - val_acc: 0.6477 - val_top_k_categorical_accuracy: 0.9094
+
+Epoch 00022: val_loss did not improve from 1.15622
+```
+
 ## References
 
 https://blog.coast.ai/five-video-classification-methods-implemented-in-keras-and-tensorflow-99cad29cc0b5

@@ -4,6 +4,30 @@
 
 ![Multi-Label Classification](https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/08/25230246/beautiful_scenery_05_hd_picture_166257.jpg)
 
+## 2. Model Summary
+
+### 1.LSTM
+```
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+lstm_1 (LSTM)                (None, 2048)              33562624
+_________________________________________________________________
+dense_1 (Dense)              (None, 512)               1049088
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 512)               0
+_________________________________________________________________
+dense_2 (Dense)              (None, 101)               51813
+=================================================================
+Total params: 34,663,525
+Trainable params: 34,663,525
+Non-trainable params: 0
+```
+### 2.CNN
+```
+
+```
+
 ### TODO List
 
 0.Windows 10 Envoriment prepare: 

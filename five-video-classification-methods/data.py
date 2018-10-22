@@ -11,6 +11,11 @@ import operator
 import threading
 from processor import process_image
 from keras.utils import to_categorical
+import pandas
+import tensorflow as tf
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+sess = tf.Session(config=config)
 
 class threadsafe_iterator:
     def __init__(self, iterator):
@@ -57,10 +62,13 @@ class DataSet():
     @staticmethod
     def get_data():
         """Load our data from file."""
+        #with open(os.path.join('data', 'data_file.csv'), 'r') as fin:
+        #    reader = csv.reader(fin)
+        #    data = list(reader)
         with open(os.path.join('data', 'data_file.csv'), 'r') as fin:
-            reader = csv.reader(fin)
-            data = list(reader)
-
+        	data = pandas.read_csv(fin, header=None)
+        print(data.values.tolist()) 
+        data = data.values.tolist()
         return data
 
     def clean_data(self):

@@ -44,9 +44,11 @@ def move_files(file_groups):
         for video in videos:
 
             # Get the parts.
-            parts = video.split(os.path.sep)
+            #parts = video.split(os.path.sep)
+            parts = video.split("/")
             classname = parts[0]
             filename = parts[1]
+            print(classname,filename)
 
             # Check if this class exists.
             if not os.path.exists(os.path.join(group, classname)):
@@ -55,14 +57,16 @@ def move_files(file_groups):
 
             # Check if we have already moved this file, or at least that it
             # exists to move.
-            if not os.path.exists(filename):
-                print("Can't find %s to move. Skipping." % (filename))
+            fullfilename = "UCF-101/" + classname + "/"+ filename
+            print(fullfilename)
+            if not os.path.exists(fullfilename):
+                print("Can't find %s to move. Skipping." % (fullfilename))
                 continue
 
             # Move it.
             dest = os.path.join(group, classname, filename)
-            print("Moving %s to %s" % (filename, dest))
-            os.rename(filename, dest)
+            print("Moving %s to %s" % (fullfilename, dest))
+            os.rename(fullfilename, dest)
 
     print("Done.")
 

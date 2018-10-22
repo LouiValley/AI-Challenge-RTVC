@@ -13,7 +13,8 @@ from keras.models import load_model
 def main(nb_images=5):
     """Spot-check `nb_images` images."""
     data = DataSet()
-    model = load_model('data/checkpoints/inception.057-1.16.hdf5')
+    #model = load_model('data/checkpoints/inception.057-1.16.hdf5')
+    model = load_model('data/checkpoints/inception.016-1.46.hdf5')
 
     # Get all our test images.
     images = glob.glob(os.path.join('data', 'test', '**', '*.jpg'))

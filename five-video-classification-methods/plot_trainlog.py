@@ -16,11 +16,13 @@ def main(training_log):
             top_5_accuracies.append(float(val_top_k_categorical_accuracy))
             cnn_benchmark.append(0.65)  # ridiculous
 
-        plt.plot(accuracies)
-        plt.plot(top_5_accuracies)
-        plt.plot(cnn_benchmark)
+        plt.plot(accuracies, label="accuracies")
+        plt.plot(top_5_accuracies, label="top_5_accuracies")
+        plt.plot(cnn_benchmark, label="cnn_benchmark")
+        plt.legend(loc="upper right")
         plt.show()
 
 if __name__ == '__main__':
-    training_log = 'data/logs/mlp-training-1489455559.7089438.log'
+    #training_log = 'data/logs/mlp-training-1489455559.7089438.log'
+    training_log = 'data/logs/lstm-training-1540081899.9795177.log'
     main(training_log)

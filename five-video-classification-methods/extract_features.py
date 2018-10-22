@@ -27,6 +27,8 @@ data = DataSet(seq_length=seq_length, class_limit=class_limit)
 # get the model.
 model = Extractor()
 
+print(data)
+
 # Loop through data.
 pbar = tqdm(total=len(data.data))
 for video in data.data:

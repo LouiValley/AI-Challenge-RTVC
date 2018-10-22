@@ -696,6 +696,9 @@ Trainable params: 23,970,053
 Non-trainable params: 34,432
 __________________________________________________________________________________________________
 None
+Found 1788425 images belonging to 101 classes.
+Found 697865 images belonging to 101 classes.
+Loading network from ImageNet weights.
 ```
 
 ### TODO List

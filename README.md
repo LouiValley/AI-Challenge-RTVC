@@ -852,12 +852,45 @@ Epoch 00018: val_loss did not improve from 1.47632
 
 train.py
 
+lstm
 ```
 Epoch 00021: val_loss did not improve from 1.15622
 Epoch 22/1000
 262/262 [==============================] - 117s 447ms/step - loss: 1.0282 - acc: 0.7091 - top_k_categorical_accuracy: 0.9294 - val_loss: 1.1878 - val_acc: 0.6477 - val_top_k_categorical_accuracy: 0.9094
 
 Epoch 00022: val_loss did not improve from 1.15622
+```
+
+lrcn
+```
+262/262 [==============================] - 116s 443ms/step - loss: 0.6100 - acc: 0.8206 - top_k_categorical_accuracy: 0.9724 - val_loss: 1.1782 - val_acc: 0.7055 - val_top_k_categorical_accuracy: 0.9117
+
+Epoch 00037: val_loss did not improve from 1.08926
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+lstm_1 (LSTM)                (None, 2048)              33562624
+_________________________________________________________________
+dense_1 (Dense)              (None, 512)               1049088
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 512)               0
+_________________________________________________________________
+dense_2 (Dense)              (None, 101)               51813
+=================================================================
+Total params: 34,663,525
+Trainable params: 34,663,525
+Non-trainable params: 0
+_________________________________________________________________
+None
+```
+
+mlp
+```
+```
+
+c3d
+
+```
 ```
 
 ## References

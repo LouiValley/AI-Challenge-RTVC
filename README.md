@@ -827,11 +827,27 @@ MemoryError
 train_cnn.py
 
 ```
+seq_length = 40
+class_limit = 4  # Number of classes to extract. Can be 1-101 or None for all.
+```
+
+```
 Epoch 00025: val_loss did not improve from 1.46369
 Epoch 26/1000
 100/100 [==============================] - 66s 655ms/step - loss: 0.6564 - acc: 0.8159 - top_k_categorical_accuracy: 0.9556 - val_loss: 1.6311 - val_acc: 0.5312 - val_top_k_categorical_accuracy: 0.8281
 
 Epoch 00026: val_loss did not improve from 1.46369
+```
+
+```
+seq_length = 40
+class_limit = 101  # Number of classes to extract. Can be 1-101 or None for all.
+```
+
+```
+100/100 [==============================] - 64s 644ms/step - loss: 0.6991 - acc: 0.8144 - top_k_categorical_accuracy: 0.9541 - val_loss: 1.6719 - val_acc: 0.5594 - val_top_k_categorical_accuracy: 0.8313
+
+Epoch 00018: val_loss did not improve from 1.47632
 ```
 
 train.py

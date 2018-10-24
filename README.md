@@ -935,6 +935,8 @@ _________________________________________________________________
 None
 ```
 conv_3d
+
+```
 262/262 [==============================] - 119s 455ms/step - loss: 0.8180 - acc: 0.7654 - top_k_categorical_accuracy: 0.9507 - val_loss: 1.1457 - val_acc: 0.6969 - val_top_k_categorical_accuracy: 0.9109
 
 Epoch 00029: val_loss did not improve from 1.05913
@@ -954,9 +956,6 @@ Trainable params: 34,663,525
 Non-trainable params: 0
 _________________________________________________________________
 None
-```
-
-
 ```
 
 

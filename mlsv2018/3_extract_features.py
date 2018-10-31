@@ -19,7 +19,7 @@ from tqdm import tqdm
 
 # Set defaults.
 seq_length = 40
-class_limit = None  # Number of classes to extract. Can be 1-101 or None for all.
+class_limit = 63  # Number of classes to extract. Can be 1-101 or None for all.
 
 # Get the dataset.
 data = DataSet(seq_length=seq_length, class_limit=class_limit)
@@ -30,9 +30,10 @@ model = Extractor()
 # Loop through data.
 pbar = tqdm(total=len(data.data))
 for video in data.data:
+    #print(data.data,video)
 
     # Get the path to the sequence for this video.
-    path = os.path.join('data', 'sequences', video[2] + '-' + str(seq_length) + \
+    path = os.path.join('data', 'sequences', str(video[1]) + '-' + str(seq_length) + \
         '-features')  # numpy will auto-append .npy
 
     # Check if we already have it.
@@ -42,6 +43,7 @@ for video in data.data:
 
     # Get the frames for this video.
     frames = data.get_frames_for_sample(video)
+    print("frames: %s" % frames)
 
     # Now downsample to just the ones we need.
     frames = data.rescale_list(frames, seq_length)

@@ -6,6 +6,16 @@ Should only run this file once!
 """
 import os
 import os.path
+#@see: https://www.techbeamers.com/python-copy-file/#shutil-copyfile
+from shutil import copyfile
+from sys import exit
+
+def get_train_file(version='01'):
+    train_file = os.path.join('data/TrainTestlist', 'trainlist' + version + '.txt')
+    return train_file
+def get_test_file(version='01'):
+    test_file = os.path.join('data/TrainTestlist', 'testlist' + version + '.txt')
+    return test_file
 
 def get_train_test_lists(version='01'):
     """
@@ -13,12 +23,13 @@ def get_train_test_lists(version='01'):
     breakdowns we'll later use to move everything.
     """
     # Get our files based on version.
-    test_file = os.path.join('TrainTestlist', 'testlist' + version + '.txt')
-    train_file = os.path.join('TrainTestlist', 'trainlist' + version + '.txt')
+    test_file = get_test_file(version)
+    train_file = get_train_file(version)
 
     # Build the test list.
     with open(test_file) as fin:
         test_list = [row.strip() for row in list(fin)]
+        test_list = [row.split(' ')[0] for row in test_list]
 
     # Build the train list. Extra step to remove the class index.
     with open(train_file) as fin:
@@ -42,27 +53,35 @@ def move_files(file_groups):
 
         # Do each of our videos.
         for video in videos:
-
+            print(video)
             # Get the parts.
-            parts = video.split(os.path.sep)
-            classname = parts[0]
-            filename = parts[1]
+            #parts = video.split(os.path.sep)
+            parts = video.split(",")
+            #print(parts)
+            classname = parts[1]
+            #classname = ""
+            #print(classname)
+            filename = parts[0]
+            print(classname,filename)
 
             # Check if this class exists.
-            if not os.path.exists(os.path.join(group, classname)):
-                print("Creating folder for %s/%s" % (group, classname))
-                os.makedirs(os.path.join(group, classname))
+            # if not os.path.exists(os.path.join(group, classname)):
+            #     print("Creating folder for %s/%s" % (group, classname))
+            #     os.makedirs(os.path.join(group, classname))
 
             # Check if we have already moved this file, or at least that it
             # exists to move.
-            if not os.path.exists(filename):
-                print("Can't find %s to move. Skipping." % (filename))
+            fullfilename = "data/rtvcdata/" + group + "/"+ filename
+            print(fullfilename)
+            if not os.path.exists(fullfilename):
+                print("Can't find %s to move. Skipping." % (fullfilename))
                 continue
 
             # Move it.
-            dest = os.path.join(group, classname, filename)
-            print("Moving %s to %s" % (filename, dest))
-            os.rename(filename, dest)
+            dest = os.path.join('data/',group, filename)
+            print("Copying %s to %s" % (fullfilename, dest))
+            #os.rename(fullfilename, dest)
+            copyfile(fullfilename, dest)
 
     print("Done.")
 
@@ -73,7 +92,7 @@ def main():
     """
     # Get the videos in groups so we can move them.
     group_lists = get_train_test_lists()
-
+    #print(group_lists)
     # Move the files.
     move_files(group_lists)
 

@@ -711,7 +711,7 @@ Windows 10 Envoriment prepare:
 
 Annaconda Python 3.6.6 + Tensorflow-gpu 1.11 + CUDA 9 + Cudnn 9.0
 
-1.Split all the videos into train/test folders
+Summarize the videos, their class, train/test status and frame count in a CSV we’ll reference throughout our training.
 
 compare to UCF-101 video files summary:
 
@@ -720,13 +720,29 @@ compare to UCF-101 video files summary:
 | UCF-101       | 320X240                      | 25    | 4~10s  | 44     | 
 | RTVC2018      | 540X960,480X684,1280X720...  | 30    | 10s    | 50     |
 
+0.Generate train/test list file
+
+@see: https://raw.githubusercontent.com/LouiValley/AI-Challenge-RTVC/master/mlsv2018/0_train_test_files.py
+
+1.Split all the videos into train/test folders
+
+@see: https://raw.githubusercontent.com/LouiValley/AI-Challenge-RTVC/master/mlsv2018/1_move_files.py
+
 2.Extract jpegs of each frame for each video
 
-3.Summarize the videos, their class, train/test status and frame count in a CSV we’ll reference throughout our training.
+@see: https://raw.githubusercontent.com/LouiValley/AI-Challenge-RTVC/master/mlsv2018/2_extract_files.py
 
-4.
+3.Extract frame images features
 
-5.
+@see: https://raw.githubusercontent.com/LouiValley/AI-Challenge-RTVC/master/mlsv2018/3_extract_features.py
+
+4.Train model and validate it
+
+@see: https://raw.githubusercontent.com/LouiValley/AI-Challenge-RTVC/master/mlsv2018/train.py
+
+5.Prediction demo
+
+@see: https://raw.githubusercontent.com/LouiValley/AI-Challenge-RTVC/master/mlsv2018/demo.py
 
 ### Troubleshoots
 

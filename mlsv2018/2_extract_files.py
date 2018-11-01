@@ -28,11 +28,11 @@ def extract_files():
     folders = ['train', 'test']
 
     for folder in folders:
-        class_folders = glob.glob(os.path.join('data',folder, '*'))
+        class_folders = glob.glob(os.path.join('data', folder, '*'))
         #print(class_folders)
 
         for vid_class in class_folders:
-            print(vid_class)
+            #print(vid_class)
             #class_files = glob.glob(os.path.join(vid_class, '*.mp4'))
             #class_files = vid_class
 
@@ -49,6 +49,7 @@ def extract_files():
                 src = os.path.join('data', train_or_test, filename)
                 dest = os.path.join('data', train_or_test, classname,
                     filename_no_ext + '-%04d.jpg')
+                #print(src,dest)
                 call(["ffmpeg", "-i", src, dest])
 
             # Now get how many frames it is.
@@ -58,6 +59,8 @@ def extract_files():
 
             print("Generated %d frames for %s" % (nb_frames, filename_no_ext))
 
+    ## clear file.
+    open('data_file.csv', 'w').close()
     with open('data_file.csv', 'w') as fout:
         writer = csv.writer(fout)
         writer.writerows(data_file)
@@ -68,7 +71,7 @@ def get_nb_frames_for_video(video_parts):
     """Given video parts of an (assumed) already extracted video, return
     the number of frames that were extracted."""
     train_or_test, classname, filename_no_ext, _ = video_parts
-    generated_files = glob.glob(os.path.join(train_or_test, classname,
+    generated_files = glob.glob(os.path.join('data', train_or_test, classname,
                                 filename_no_ext + '*.jpg'))
     return len(generated_files)
 
@@ -76,11 +79,12 @@ def get_video_parts(video_path):
     """Given a full path to a video, return its parts."""
     parts = video_path.split(os.path.sep)
     #parts = video_path.split("\\")
-    print(parts)
-    filename = parts[1]
+    #print(parts)
+    filename = parts[2]
+    #print(filename)
     filename_no_ext = filename.split('.')[0]
     classname = ""
-    train_or_test = parts[0]
+    train_or_test = parts[1]
 
     return train_or_test, classname, filename_no_ext, filename
 

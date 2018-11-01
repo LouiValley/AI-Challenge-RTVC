@@ -65,7 +65,7 @@ class DataSet():
         #with open(os.path.join('data', 'data_file.csv'), 'r') as fin:
         #    reader = csv.reader(fin)
         #    data = list(reader)
-        with open(os.path.join('data', 'data_file.csv'), 'r') as fin:
+        with open(os.path.join('data_file.csv'), 'r') as fin:
         	data = pandas.read_csv(fin, header=None)
         print("get_data(): %s " %data.values.tolist()) 
         data = data.values.tolist()

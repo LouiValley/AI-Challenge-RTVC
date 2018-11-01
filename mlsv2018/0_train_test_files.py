@@ -18,7 +18,7 @@ def generate_train_test_files(version='01'):
     """
     Dynamic generate train/test file as a name list txt file.
     """
-    path_annotation = './data/short_video_trainingset_annotations.txt'
+    path_annotation = 'trainingset_annotations.txt'
     path_train = './data/rtvcdata/train'
     path_test = './data/rtvcdata/test'
     ## clear file.

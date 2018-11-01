@@ -90,7 +90,7 @@ def main():
     class_limit = None  # int, can be 1-101 or None
     seq_length = 40
     load_to_memory = False  # pre-load the sequences into memory
-    batch_size = 32
+    batch_size = 1
     nb_epoch = 1000
 
     # Chose images or features and image shape based on network.

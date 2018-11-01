@@ -122,7 +122,7 @@ class DataSet():
                 train.append(item)
             else:
                 test.append(item)
-        print("split_train_test, %s,%s" % train, test)
+        print("split_train_test, %s,%s", train, test)
         return train, test
 
     def get_all_sequences_in_memory(self, train_test, data_type):
@@ -208,9 +208,11 @@ class DataSet():
 
     def get_extracted_sequence(self, data_type, sample):
         """Get the saved extracted features."""
-        filename = sample[2]
-        path = os.path.join(self.sequence_path, filename + '-' + str(self.seq_length) + \
+        filename = sample[1]
+        print(sample,filename, data_type)
+        path = os.path.join(self.sequence_path, str(filename) + '-' + str(self.seq_length) + \
             '-' + data_type + '.npy')
+        print(path)
         if os.path.isfile(path):
             return np.load(path)
         else:

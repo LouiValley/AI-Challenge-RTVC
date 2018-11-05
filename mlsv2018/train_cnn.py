@@ -41,6 +41,8 @@ def get_generators():
 
     test_datagen = ImageDataGenerator(rescale=1./255)
 
+    print(data, data.classes)
+
     train_generator = train_datagen.flow_from_directory(
         os.path.join('data', 'train'),
         target_size=(299, 299),

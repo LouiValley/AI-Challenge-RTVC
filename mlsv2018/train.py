@@ -87,8 +87,8 @@ def main():
     # model can be one of lstm, lrcn, mlp, conv_3d, c3d
     model = 'lstm'
     saved_model = None  # None or weights file
-    class_limit = None  # int, can be 1-101 or None
-    seq_length = 40
+    class_limit = 63  # int, can be 1-101 or None
+    seq_length = 50
     load_to_memory = False  # pre-load the sequences into memory
     batch_size = 1
     nb_epoch = 1000

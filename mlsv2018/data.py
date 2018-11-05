@@ -53,6 +53,7 @@ class DataSet():
 
         # Get the classes.
         self.classes = self.get_classes()
+        print("classes: ", self.classes)
 
         # Now do some minor data cleaning.
         self.data = self.clean_data()
@@ -67,7 +68,7 @@ class DataSet():
         #    data = list(reader)
         with open(os.path.join('data_file.csv'), 'r') as fin:
         	data = pandas.read_csv(fin, header=None)
-        print("get_data(): %s " %data.values.tolist()) 
+        print("get_data(): ", data.values.tolist()) 
         data = data.values.tolist()
         return data
 
@@ -87,9 +88,9 @@ class DataSet():
         only return the classes we need."""
         classes = []
         for item in self.data:
-            if item[1] not in classes:
-                classes.append(item[1])
-
+            rawitem = item[1].lstrip('_')
+            if rawitem not in classes:
+                classes.append(rawitem)
         # Sort them.
         classes = sorted(classes)
 

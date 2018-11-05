@@ -47,7 +47,7 @@ def extract_files():
             if not check_already_extracted(video_parts):
                 # Now extract it.
                 src = os.path.join('data', train_or_test, filename)
-                dest = os.path.join('data', train_or_test, classname,
+                dest = os.path.join('data', train_or_test,
                     filename_no_ext + '-%04d.jpg')
                 #print(src,dest)
                 call(["ffmpeg", "-i", src, dest])
@@ -55,7 +55,7 @@ def extract_files():
             # Now get how many frames it is.
             nb_frames = get_nb_frames_for_video(video_parts)
 
-            data_file.append([train_or_test, filename_no_ext, nb_frames])
+            data_file.append([train_or_test, classname, filename_no_ext, nb_frames])
 
             print("Generated %d frames for %s" % (nb_frames, filename_no_ext))
 
@@ -71,19 +71,37 @@ def get_nb_frames_for_video(video_parts):
     """Given video parts of an (assumed) already extracted video, return
     the number of frames that were extracted."""
     train_or_test, classname, filename_no_ext, _ = video_parts
-    generated_files = glob.glob(os.path.join('data', train_or_test, classname,
+    generated_files = glob.glob(os.path.join('data', train_or_test,
                                 filename_no_ext + '*.jpg'))
     return len(generated_files)
+
+def get_video_classes(video_name):
+	"""find video classes from anotation txt file."""
+	path_annotation = 'trainingset_annotations.txt'
+	with open(path_annotation,'r') as fin:
+		lines = fin.readlines()
+		for line in lines:
+			if line.find(video_name)!=-1:
+				print("found match line: %s, video_name: %s, then write", line, video_name)
+				parts = line.split(",")
+				classnames = "" # e.g: c1_c2_...
+				for i in range(1, len(parts)):#without filename as index 0
+					classnames += "_" + parts[i].strip("\n") 
+				print(classnames)
+				return classnames
 
 def get_video_parts(video_path):
     """Given a full path to a video, return its parts."""
     parts = video_path.split(os.path.sep)
     #parts = video_path.split("\\")
-    #print(parts)
+    print(parts)
     filename = parts[2]
     #print(filename)
-    filename_no_ext = filename.split('.')[0]
-    classname = ""
+    classname = get_video_classes(filename)
+    print(classname)
+    filename_no_ext = filename.split('.')[0] + classname
+    print(filename_no_ext)
+    
     train_or_test = parts[1]
 
     return train_or_test, classname, filename_no_ext, filename

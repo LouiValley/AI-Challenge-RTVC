@@ -9,6 +9,7 @@ most_pop = 'TennisSwing'
 
 data = DataSet()
 nb_classes = len(data.classes)
+print(nb_classes)
 
 # Try a random guess.
 nb_random_matched = 0

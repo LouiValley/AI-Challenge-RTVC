@@ -711,6 +711,14 @@ Windows 10 Envoriment prepare:
 
 Annaconda Python 3.6.6 + Tensorflow-gpu 1.11 + CUDA 9 + Cudnn 9.0
 
+```
+conda create -n tensorflow python=3.5
+```
+
+```
+pip install -r requirements.txt
+```
+
 Summarize the videos, their class, train/test status and frame count in a CSV we’ll reference throughout our training.
 
 compare to UCF-101 video files summary:

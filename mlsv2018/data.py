@@ -77,8 +77,8 @@ class DataSet():
         than N frames. Also limit it to classes we want to use."""
         data_clean = []
         for item in self.data:
-            if int(item[2]) >= self.seq_length and int(item[2]) <= self.max_frames \
-                    and item[1] in self.classes:
+            if int(item[3]) >= self.seq_length and int(item[3]) <= self.max_frames \
+                    and item[1].lstrip('_') in self.classes:
                 data_clean.append(item)
 
         return data_clean
@@ -253,7 +253,7 @@ class DataSet():
         """Given a sample row from the data file, get all the corresponding frame
         filenames."""
         path = os.path.join('data', sample[0])
-        filename = str(sample[1])
+        filename = str(sample[2])
         images = sorted(glob.glob(os.path.join(path, filename + '*jpg')))
         return images
 

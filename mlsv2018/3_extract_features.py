@@ -34,7 +34,7 @@ for video in data.data:
     print(data.data,video)
 
     # Get the path to the sequence for this video.
-    path = os.path.join('data', 'sequences', str(video[1]) + '-' + str(seq_length) + \
+    path = os.path.join('data', 'sequences', str(video[2]) + '-' + str(seq_length) + \
         '-features')  # numpy will auto-append .npy
     print(path)
     # Check if we already have it.

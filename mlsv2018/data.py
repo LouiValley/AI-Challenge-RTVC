@@ -104,7 +104,7 @@ class DataSet():
         """Given a class as a string, return its number in the classes
         list. This lets us encode and one-hot it for training."""
         # Encode it first.
-        label_encoded = self.classes.index(class_str)
+        label_encoded = self.classes.index(class_str.lstrip("_"))
 
         # Now one-hot it.
         label_hot = to_categorical(label_encoded, len(self.classes))
@@ -209,11 +209,11 @@ class DataSet():
 
     def get_extracted_sequence(self, data_type, sample):
         """Get the saved extracted features."""
-        filename = sample[1]
-        print(sample,filename, data_type)
+        filename = sample[2]
+        #print(sample,filename, data_type)
         path = os.path.join(self.sequence_path, str(filename) + '-' + str(self.seq_length) + \
             '-' + data_type + '.npy')
-        print(path)
+        print("get_extracted_sequence:",path)
         if os.path.isfile(path):
             return np.load(path)
         else:

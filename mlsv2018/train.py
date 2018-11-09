@@ -43,7 +43,7 @@ def train(data_type, seq_length, model, saved_model=None,
 
     # Get samples per epoch.
     # Multiply by 0.7 to attempt to guess how much of data.data is the train set.
-    steps_per_epoch = (len(data.data) * 0.7) // batch_size
+    steps_per_epoch = (len(data.data) * 0.6) // batch_size
 
     if load_to_memory:
         # Get data.
@@ -88,9 +88,9 @@ def main():
     model = 'lstm'
     saved_model = None  # None or weights file
     class_limit = 63  # int, can be 1-101 or None
-    seq_length = 50
+    seq_length = 40
     load_to_memory = False  # pre-load the sequences into memory
-    batch_size = 1
+    batch_size = 2
     nb_epoch = 1000
 
     # Chose images or features and image shape based on network.

@@ -118,12 +118,12 @@ class DataSet():
         train = []
         test = []
         for item in self.data:
-            print(item)
+            print("self.data:, item: ", self.data, item)
             if item[0] == 'train':
                 train.append(item)
             else:
                 test.append(item)
-        print("split_train_test, %s,%s", train, test)
+        print("split_train_test:", train, test)
         return train, test
 
     def get_all_sequences_in_memory(self, train_test, data_type):
@@ -132,6 +132,7 @@ class DataSet():
         memory so we can train way faster.
         """
         # Get the right dataset.
+        print("get_all_sequences_in_memory called.")
         train, test = self.split_train_test()
         data = train if train_test == 'train' else test
 
@@ -225,8 +226,9 @@ class DataSet():
         the model needs to make predictions."""
         # First, find the sample row.
         sample = None
+        print(self.data)
         for row in self.data:
-            if row[2] == filename:
+            if row[2].split("_")[0] == filename:
                 sample = row
                 break
         if sample is None:

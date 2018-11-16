@@ -32,7 +32,7 @@ def extract_files():
         #print(class_folders)
 
         for vid_class in class_folders:
-            #print(vid_class)
+            print("extract_files,vid_class:", vid_class)
             #class_files = glob.glob(os.path.join(vid_class, '*.mp4'))
             #class_files = vid_class
 
@@ -82,25 +82,26 @@ def get_video_classes(video_name):
 		lines = fin.readlines()
 		for line in lines:
 			if line.find(video_name)!=-1:
-				print("found match line: %s, video_name: %s, then write", line, video_name)
+				print("get_video_classes,found match line: %s, video_name: %s, then write", line, video_name)
 				parts = line.split(",")
 				classnames = "" # e.g: c1_c2_...
 				for i in range(1, len(parts)):#without filename as index 0
 					classnames += "_" + parts[i].strip("\n") 
-				print(classnames)
+				print("get_video_classes:",classnames)
 				return classnames
 
 def get_video_parts(video_path):
     """Given a full path to a video, return its parts."""
     parts = video_path.split(os.path.sep)
     #parts = video_path.split("\\")
-    print(parts)
+    print("get_video_parts:",parts)
+    #filename = parts[2].split("_")[0]#1000000031_4-0001.jpg
     filename = parts[2]
-    #print(filename)
+    print("get_video_parts,filename:",filename)
     classname = get_video_classes(filename)
-    print(classname)
+    print("get_video_parts,classname:",classname)
     filename_no_ext = filename.split('.')[0] + classname
-    print(filename_no_ext)
+    print("get_video_parts,filename_no_ext:",filename_no_ext)
     
     train_or_test = parts[1]
 

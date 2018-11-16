@@ -43,7 +43,7 @@ def train(data_type, seq_length, model, saved_model=None,
 
     # Get samples per epoch.
     # Multiply by 0.7 to attempt to guess how much of data.data is the train set.
-    steps_per_epoch = (len(data.data) * 0.6) // batch_size
+    steps_per_epoch = (len(data.data) * 0.7) // batch_size
 
     if load_to_memory:
         # Get data.

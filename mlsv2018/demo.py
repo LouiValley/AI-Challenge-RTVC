@@ -38,7 +38,7 @@ def main():
     model = 'lstm'
     # Must be a weights file.
    #saved_model = 'data/checkpoints/inception.016-1.46.hdf5'
-    saved_model = 'data/checkpoints/lstm-features.001-1.733.hdf5'
+    saved_model = 'data/checkpoints/lstm-features.005-1.343.hdf5'
     #saved_model = 'data/checkpoints/lstm-features.026-0.239.hdf5'
     # Sequence length must match the lengh used during training.
     seq_length = 40
@@ -51,7 +51,7 @@ def main():
     # It also must be part of the train/test data.
     # TODO Make this way more useful. It should take in the path to
     # an actual video file, extract frames, generate sequences, etc.
-    video_name = '1000370'
+    video_name = '1000013074'
     #ideo_name = 'v_ApplyLipstick_g01_c01'
    #video_name = 'v_YoYo_g04_c02'
 

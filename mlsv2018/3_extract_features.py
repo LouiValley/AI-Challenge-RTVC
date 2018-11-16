@@ -31,12 +31,12 @@ model = Extractor()
 print(data.data)
 pbar = tqdm(total=len(data.data))
 for video in data.data:
-    print(data.data,video)
+    print("extract_feature video:",video)
 
     # Get the path to the sequence for this video.
     path = os.path.join('data', 'sequences', str(video[2]) + '-' + str(seq_length) + \
         '-features')  # numpy will auto-append .npy
-    print(path)
+    print("saved feature path:",path)
     # Check if we already have it.
     if os.path.isfile(path + '.npy'):
         pbar.update(1)
@@ -45,11 +45,11 @@ for video in data.data:
     # Get the frames for this video.
     #print(video)
     frames = data.get_frames_for_sample(video)
-    print("frames: %s",frames)
+    print("data.get_frames_for_sample frames: %s",frames)
 
     # Now downsample to just the ones we need.
     frames = data.rescale_list(frames, seq_length)
-    print("downsampled frames: %s",frames)
+    print("data.rescale_list frames: %s",frames)
     # Now loop through and extract features to build the sequence.
     sequence = []
     for image in frames:

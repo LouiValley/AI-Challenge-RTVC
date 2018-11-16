@@ -68,7 +68,7 @@ class DataSet():
         #    data = list(reader)
         with open(os.path.join('data_file.csv'), 'r') as fin:
         	data = pandas.read_csv(fin, header=None)
-        print("get_data(): ", data.values.tolist()) 
+        #print("get_data(): ", data.values.tolist()) 
         data = data.values.tolist()
         return data
 
@@ -226,8 +226,9 @@ class DataSet():
         the model needs to make predictions."""
         # First, find the sample row.
         sample = None
-        print(self.data)
+        #print(self.data)
         for row in self.data:
+            print("get_frames_by_filename.row:",row)
             if row[2].split("_")[0] == filename:
                 sample = row
                 break
